@@ -4,69 +4,46 @@ main {
     gap: 5vh;
 }
 
-input {
-    display: none;
+.slider-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
 }
 
 .slider {
-    width: 800px;
-    max-width: 90vw;
-    overflow: hidden;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    height: 60vh;
+    scrollbar-width: none;
     border-radius: 15px;
-    position: relative;
-    align-self: center;
 }
 
-.slides {
-    display: flex;
-    width: 300%;
-    height: 450px;
-    animation: slide 15s infinite;
+.slider::-webkit-scrollbar {
+    display: none;
 }
 
 .slide {
-    width: 40%;
-    flex-shrink: 0;
+    flex: 0 0 100%;
+    scroll-snap-align: start;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .slide img {
     width: 100%;
-    height:100%;
+    height: 100%;
+    transform: scale(.99);
     object-fit: cover;
+    border-radius: 15px;
 }
 
-.slide::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,07));
-}
-
-.controls {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    gap: 12px;
-}
-
-.controls label {
-    width: 14px;
-    height: 14px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-@keyframes slide {
-    0%, 30% { transform: translateX(0%);}
-    33%, 63% { transform: translateX(-40%);}
-    66%, 100% {transform: translateX(-80%);}
-}
 
 .info {
     display: flex;
@@ -97,9 +74,10 @@ input {
     justify-content: space-between;
     background-color: var(--yellow);
     border-radius: 15px;
+    padding: 15px;
 }
 
-.block:nth-child(2) {
+.block:nth-child(even) {
     flex-direction: row-reverse;
 }
 
@@ -123,4 +101,73 @@ input {
     font-size: 15px;
     width: 600px;
     align-self: center;
+}
+
+.reviews {
+    background-color: var(--yellow);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 3vh;
+    border-radius: 15px;
+}
+
+.reviews .title {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.review {
+    background-color: var(--blue);
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.review .name {
+    font-size: 24px;
+}
+
+.review .text {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.rating span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url("../../media-files/icons/heroicons-outline/star.svg");
+}
+
+.joinus {
+    background-color: var(--yellow);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-block: 2vh;
+}
+
+.joinus .text {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.joinus button {
+    background: var(--green);
+    border-radius: 15px;
+    padding-block: 15px;
+    padding-inline: 40px;
+    border: none;
+    font-size: 24px;
 }
