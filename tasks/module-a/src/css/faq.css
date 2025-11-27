@@ -1,0 +1,35 @@
+@import "./globals.css";
+
+.block {
+    background-color: var(--yellow);
+    border-radius: 15px;
+    padding: 1vw;
+    padding-inline: 2vw;
+}
+
+input {
+    display: none;
+}
+
+.question {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.answer {
+    display: none;
+}
+
+.block input:checked ~ .answer {
+    display: block;
+}
+
+main {
+    margin-bottom: 5vh;
+    gap: 3vh;
+}
+
+.show {
+    display: block;
+}
+

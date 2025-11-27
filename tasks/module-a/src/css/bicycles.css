@@ -1,0 +1,44 @@
+@import "./globals.css";
+
+main {
+    gap: 2vh;
+}
+
+.block {
+    text-align: center;
+    background-color: var(--yellow);
+    border-radius: 15px;
+}
+
+.block img {
+    width: 800px;
+    border-radius: 15px;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.desc {
+    font-size: 18px;
+}
+
+.rating {
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.stars {
+    margin-left: 1vw;
+}
+
+.stars span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url("../../media-files/icons/heroicons-outline/star.svg");
+}
