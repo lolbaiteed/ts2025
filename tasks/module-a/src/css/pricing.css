@@ -1,1 +1,37 @@
 @import './globals.css';
+
+main {
+    gap: 5vh;
+}
+
+.block {
+    background-color: var(--yellow);
+    border-radius: 15px;
+    text-align: center;
+    padding-block: 2vh;
+}
+
+.block img {
+    width: 400px;
+    border-radius: 15px;
+}
+
+.block button {
+    background: var(--green);
+    border: none;
+    border-radius: 15px;
+    padding-block: 1vh;
+    padding-inline: 2vw;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.price {
+    font-size: 18px;
+}
+
