@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../src/lib/generated"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  user_key     String      @id @unique
+  name         String
+  email        String
+  phone        String
+  password_hash String
+  
+  // Relations
+  categories   Categorys[]  @relation("CategoryOwner")
+  applications Applications[]
+  bookings     Bookings[]
+  
+  @@map("users")
+}
+
+model Categorys {
+  category_key String  @id @unique
+  name         String
+  user_ref     String
+  // Relations
+  owner        Users     @relation("CategoryOwner", fields: [user_ref], references: [user_key])
+  bicycles     Bicycles[]
+  applications Applications[]
+  tariffs      Tariffs[]
+  
+  @@map("categories")
+}
+
+model Bicycles {
+  bicycle_key  String  @id @unique
+  name         String
+  slug         String
+  description  String
+  locationX    Float
+  locationY    Float
+  pathToImage  String
+  category_ref String
+  
+  // Relations
+  category     Categorys @relation(fields: [category_ref], references: [category_key])
+  bookings     Bookings[]
+  
+  @@map("bicycles")
+}
+
+model Tariffs {
+  tariff_key   String  @id @unique
+  name         String
+  type         String
+  basePrice    Float
+  minPrice     Float?
+  maxPrice     Float?
+  category_ref String
+  
+  // Relations
+  category     Categorys @relation(fields: [category_ref], references: [category_key])
+  bookings     Bookings[]
+  
+  @@map("tariffs")
+}
+
+model Applications {
+  application_key String @id @unique
+  category_ref    String
+  user_ref        String
+  
+  // Relations
+  category        Categorys @relation(fields: [category_ref], references: [category_key])
+  user            Users     @relation(fields: [user_ref], references: [user_key])
+  
+  @@map("applications")
+}
+
+model Bookings {
+  booking_key     String   @id @unique
+  rating          Int?
+  price           Float?
+  percentageOfWear Float?
+  startedAt       DateTime
+  endedAt         DateTime?
+  bicycle_ref     String
+  tariff_ref      String
+  user_ref        String
+  photos          Json? 
+  
+  // Relations
+  bicycle         Bicycles @relation(fields: [bicycle_ref], references: [bicycle_key])
+  tariff          Tariffs  @relation(fields: [tariff_ref], references: [tariff_key])
+  user            Users   @relation(fields: [user_ref], references: [user_key])
+  
+  @@map("bookings")
+}
